@@ -7,15 +7,17 @@ import java.util.Map;
 import java.util.function.Function;
 
 /**
- * {@link FunctionMap} is an API that allows you to store and retrieve functions by string name. {@link FunctionMap}
- * is stored in a {@link HashMap}, where the key is a function name, and the value is a {@link Function} instance.
+ * {@link FunctionMap} is an API that allows you to store and retrieve functions by string name.
+ * {@link FunctionMap} is stored in a {@link HashMap}, where the key is a function name,
+ * and the value is a {@link Function} instance.
  *
- * @author Taras Boychuk
+ * @param <T> the type of input to the function
+ * @param <R> the type of result of the function
  */
 public class FunctionMap<T, R> {
     private Map<String, Function<T, R>> functionMap;
 
-    FunctionMap() {
+    public FunctionMap() {
         functionMap = new HashMap<>();
     }
 

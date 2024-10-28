@@ -1,35 +1,30 @@
 package com.bobocode.fp;
 
-import com.bobocode.fp.exception.InvalidRangeException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
-/**
- * This class allow to calculate a sum of squares of integer number in a certain range. It was implemented using
- * OO approach. Your job is to refactor it using functional approach. E.g. avoid using mutable variables
- *
- * @author Taras Boychuk
- */
-public class SumOfSquares {
+public class CrazyLambdas {
     public static void main(String[] args) {
-        System.out.println("Sum of squares from 5 to 10 is " + calculateSumOfSquaresInRange(5, 10));
+        // Example list of integers
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+
+        // Using a lambda expression to calculate the square of each number
+        List<Integer> squaredNumbers = numbers.stream()
+                .map(number -> square(number)) // Method reference
+                .collect(Collectors.toList());
+
+        // Output the results
+        System.out.println("Squared Numbers: " + squaredNumbers);
+
+        // Using the functional interface with a lambda expression
+        SquareCalculator calculator = (number) -> number * number;
+        int result = calculator.calculate(6);
+        System.out.println("Square of 6 using functional interface: " + result);
     }
 
-    /**
-     * This method calculates the sum of squares of integer in the range
-     *
-     * @param startInclusive first element in range
-     * @param endInclusive   last element in range
-     * @return the sum of squares of each element in the range
-     */
-    static int calculateSumOfSquaresInRange(int startInclusive, int endInclusive) {
-        if (endInclusive < startInclusive) {
-            throw new InvalidRangeException();
-        }
-
-        // todo: refactor using functional approach – instead of using for loop, use IntStream.rangeClose()
-        int sumOfSquares = 0;
-        for (int i = startInclusive; i <= endInclusive; i++) {
-            sumOfSquares += i * i;
-        }
-        return sumOfSquares;
+    // Method to calculate square of a number
+    private static int square(int number) {
+        return number * number;
     }
 }

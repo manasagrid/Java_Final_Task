@@ -40,7 +40,7 @@ public class BoxTest {
     @Test
     @SneakyThrows
     @Order(4)
-    @DisplayName("Field \"value\" is \"T\"")
+    @DisplayName("Field \"value\" is of generic type \"T\"")
     void valueFieldIsGeneric() {
         var valueField = Box.class.getDeclaredField("value");
         var genericType = valueField.getGenericType();
@@ -53,8 +53,8 @@ public class BoxTest {
     @Order(5)
     @DisplayName("Constructor parameter type is \"T\"")
     void constructorParameterIsGeneric() {
-        var constructor = Box.class.getDeclaredConstructors()[0];
-        assert (constructor.getParameters().length == 1);
+        var constructor = Box.class.getDeclaredConstructor(Object.class); // Replace Object with generic
+        assertThat(constructor.getParameters().length).isEqualTo(1);
         var parameter = constructor.getParameters()[0];
 
         assertThat(parameter.getParameterizedType().getTypeName()).isEqualTo(TYPE_PARAMETER_NAME);
@@ -75,8 +75,8 @@ public class BoxTest {
     @Order(7)
     @DisplayName("Setter parameter type is \"T\"")
     void setterParameterIsGeneric() {
-        var setter = Box.class.getDeclaredMethod("setValue", Object.class);
-        assert (setter.getParameters().length == 1);
+        var setter = Box.class.getDeclaredMethod("setValue", Object.class); // Replace Object with generic
+        assertThat(setter.getParameters().length).isEqualTo(1);
         var parameter = setter.getParameters()[0];
 
         assertThat(parameter.getParameterizedType().getTypeName()).isEqualTo(TYPE_PARAMETER_NAME);

@@ -1,13 +1,7 @@
 package com.bobocode.fp;
 
 /**
- * An util class that provides a factory method for creating an instance of a {@link FunctionMap} filled with a list
- * of functions.
- * <p>
- * TODO: implement a method and verify it by running {@link FunctionsTest}
- * <p>
- * TODO: if you find this exercise valuable and you want to get more like it, <a href="https://www.patreon.com/bobocode"> 
- *     please support us on Patreon</a>
+ * An util class that provides a factory method for creating an instance of a {@link FunctionMap} filled with a list of functions.
  *
  * @author Taras Boychuk
  */
@@ -28,7 +22,12 @@ public class Functions {
     public static FunctionMap<Integer, Integer> intFunctionMap() {
         FunctionMap<Integer, Integer> intFunctionMap = new FunctionMap<>();
 
-        // todo: according to the javadoc add functions using lambda expression
+        // Adding functions using lambda expressions
+        intFunctionMap.addFunction("abs", (Integer x) -> x < 0 ? -x : x);
+        intFunctionMap.addFunction("sgn", (Integer x) -> (x > 0) ? 1 : (x < 0) ? -1 : 0);
+        intFunctionMap.addFunction("increment", (Integer x) -> x + 1);
+        intFunctionMap.addFunction("decrement", (Integer x) -> x - 1);
+        intFunctionMap.addFunction("square", (Integer x) -> x * x);
 
         return intFunctionMap;
     }
